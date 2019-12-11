@@ -6,15 +6,15 @@ env:
 - URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
 
 before_install:
-- SET SFDX_AUTOUPDATE_DISABLE=false
-- SET SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
-- SET SFDX_DOMAIN_RETRY=300
-- SET SFDX_DISABLE_APP_HUB=true
-- SET SFDX_LOG_LEVEL=DEBUG
+- export SFDX_AUTOUPDATE_DISABLE=false
+- export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
+- export SFDX_DOMAIN_RETRY=300
+- export SFDX_DISABLE_APP_HUB=true
+- export SFDX_LOG_LEVEL=DEBUG
 - mkdir sfdx
 - wget -qO- $URL | tar xJ -C sfdx --strip-components 1
 - "./sfdx/install"
-- SET PATH=./sfdx/$(pwd):$PATH
+- export PATH=./sfdx/$(pwd):$PATH
 - sfdx --version
 - sfdx plugins --core
 - sfdx force:auth:jwt:grant --clientid 3MVG9YDQS5WtC11p4_a8RyOPz54Is.AO1_zJrfXD8rCcTKtuyHX54HW.qksymWtLEqi0xbf98qIkeep7Nf6g -u kazi@infosys.com --jwtkeyfile ${JWT_KEY_FILE} --setdefaultdevhubusername
